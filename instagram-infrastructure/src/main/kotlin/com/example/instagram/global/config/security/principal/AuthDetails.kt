@@ -1,4 +1,4 @@
-package com.example.instagram.global.security.principal
+package com.example.instagram.global.config.security.principal
 
 import com.example.instagram.domain.persistense.user.entity.UserJpaEntity
 import org.springframework.security.core.GrantedAuthority
