@@ -1,17 +1,19 @@
 package com.example.instagram.domain.persistense.user.entity
 
+import com.example.instagram.domain.persistense.user.converter.StringListConverter
 import java.util.*
 import javax.persistence.*
 
 @Entity(name = "user")
-class User(
+class UserJpaEntity(
     id: UUID,
     accountId: String,
     password: String,
     name: String,
     introduction: String?,
     isHided: Boolean,
-    isDeleted: Boolean
+    isDeleted: Boolean,
+    link: MutableList<String> = ArrayList()
 ) {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,11 +36,9 @@ class User(
     var introduction: String? = introduction
         protected set
 
-
-    @OneToMany(mappedBy = "user")
-    var link: MutableList<Link> = ArrayList()
+    @Convert(converter = StringListConverter::class)
+    var link: MutableList<String> = link
         protected set
-
 
     @Column(name = "is_hided", nullable = false)
     var isHided: Boolean = isHided
