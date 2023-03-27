@@ -1,4 +1,4 @@
-package com.example.instagram.global.jwt.property
+package com.example.instagram.global.config.jwt.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
