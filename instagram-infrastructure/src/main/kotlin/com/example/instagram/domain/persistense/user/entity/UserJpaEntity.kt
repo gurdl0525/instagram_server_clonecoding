@@ -1,23 +1,27 @@
 package com.example.instagram.domain.persistense.user.entity
 
 import com.example.instagram.domain.persistense.user.converter.StringListConverter
+import org.hibernate.annotations.SQLDelete
+import org.hibernate.annotations.Where
 import java.util.*
 import javax.persistence.*
 
 @Entity(name = "user")
+@Where(clause = "is_deleted = false")
+@SQLDelete(sql = "UPDATE `user` SET is_deleted = true WHERE id = ?")
 class UserJpaEntity(
-    id: UUID,
+    id: UUID?,
     accountId: String,
     password: String,
     name: String,
     introduction: String?,
     isHided: Boolean,
     isDeleted: Boolean,
-    link: MutableList<String> = ArrayList()
+    link: List<String>?
 ) {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: UUID = id
+    var id: UUID? = id
         protected set
 
     @Column(name = "account_id", length = 20, nullable = false, unique = true)
@@ -37,7 +41,7 @@ class UserJpaEntity(
         protected set
 
     @Convert(converter = StringListConverter::class)
-    var link: MutableList<String> = link
+    var link: List<String>? = link
         protected set
 
     @Column(name = "is_hided", nullable = false)
@@ -47,6 +51,4 @@ class UserJpaEntity(
     @Column(name = "is_deleted", nullable = false)
     var isDeleted: Boolean = isDeleted
         protected set
-
-
 }
