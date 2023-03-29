@@ -4,9 +4,12 @@ import com.example.instagram.domain.auth.dto.response.TokenResponse
 import com.example.instagram.domain.auth.port.out.JwtPort
 import com.example.instagram.domain.persistense.auth.entity.RefreshTokenJpaEntity
 import com.example.instagram.domain.persistense.auth.repository.RefreshTokenRepository
+import com.example.instagram.domain.user.exception.UserNotFoundException
+import com.example.instagram.domain.user.model.User
 import com.example.instagram.global.config.jwt.property.JwtProperties
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import java.util.*
 
