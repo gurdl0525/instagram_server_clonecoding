@@ -14,6 +14,7 @@ enum class GlobalErrorCode(
     //401
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "U01", "Invalid Token"),
     EXPIRED_TOKEN(HttpStatus.UNAUTHORIZED, "U02", "Expired Token"),
+    UN_AUTHORIZED(HttpStatus.UNAUTHORIZED, "U03", "Un Authenticated"),
 
     //500
     INTERNAL_SERVER_GLOBAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "I01", "Internal Server Error")
