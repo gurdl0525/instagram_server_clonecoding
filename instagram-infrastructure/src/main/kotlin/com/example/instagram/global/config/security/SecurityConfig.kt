@@ -21,8 +21,8 @@ class SecurityConfig(
 ) {
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        return http
+    fun filterChain(http: HttpSecurity): SecurityFilterChain =
+        http
             .csrf().disable()
             .formLogin().disable()
             .cors().and()
@@ -38,7 +38,6 @@ class SecurityConfig(
             .and().apply(FilterConfig(objectMapper, jwtTokenParser, jwtTokenResolver))
 
             .and().build()
-    }
 
     @Bean
     fun passwordEncoder() = BCryptPasswordEncoder()
