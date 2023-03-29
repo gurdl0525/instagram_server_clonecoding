@@ -9,5 +9,5 @@ dependencies {
 }
 
 allOpen {
-    annotation("com.example.global.annotation.UseCase")
+    annotation("com.example.instagram.global.annotation.UseCase")
 }
