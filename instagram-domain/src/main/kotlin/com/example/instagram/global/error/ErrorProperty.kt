@@ -1,10 +1,8 @@
 package com.example.instagram.global.error
 
-import org.springframework.http.HttpStatus
-
 interface ErrorProperty {
 
-    fun status(): HttpStatus
+    fun status(): Int
 
     fun code(): String
 
