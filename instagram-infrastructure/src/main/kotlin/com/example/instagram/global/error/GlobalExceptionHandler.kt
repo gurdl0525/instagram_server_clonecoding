@@ -17,18 +17,16 @@ class GlobalExceptionHandler {
 
 
     @ExceptionHandler(BusinessException::class)
-    protected fun customExceptionHandle(e: BusinessException) = handleException(e)
+    protected fun customExceptionHandle(e: BusinessException): ResponseEntity<ErrorResponse> {
+        val body = ErrorResponse.of(e.errorProperty)
+        val status = HttpStatus.valueOf(e.errorProperty.status())
+        return ResponseEntity(body, status)
+    }
 
     @ExceptionHandler(HttpMessageNotReadableException::class)
     protected fun handleHttpMessageNotReadable(e: HttpMessageNotReadableException) = ErrorResponse(
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.BAD_REQUEST.value(),
         e.httpInputMessage.toString(),
         e.message ?: e.localizedMessage
     )
-
-    private fun handleException(e: BusinessException): ResponseEntity<ErrorResponse> {
-        val status = e.errorProperty.status()
-        val body = ErrorResponse.of(e.errorProperty)
-        return ResponseEntity(body, status)
-    }
 }
