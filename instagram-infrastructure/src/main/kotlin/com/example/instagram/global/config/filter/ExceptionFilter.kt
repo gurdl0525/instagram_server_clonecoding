@@ -35,7 +35,7 @@ class ExceptionFilter(
 
     private fun sendErrorMessage(response: HttpServletResponse, errorProperty: ErrorProperty) {
         response.let {
-            it.status = errorProperty.status().value()
+            it.status = errorProperty.status()
             it.contentType = MediaType.APPLICATION_JSON_VALUE
             it.writer.write(objectMapper.writeValueAsString(ErrorResponse.of(errorProperty)))
         }
