@@ -6,7 +6,6 @@ import com.example.instagram.domain.user.exception.UserNotFoundException
 import com.example.instagram.domain.user.model.User
 import com.example.instagram.domain.user.port.out.UserSecurityPort
 import com.example.instagram.global.config.security.principal.AuthDetails
-import com.example.instagram.global.exception.InternalServerErrorException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
