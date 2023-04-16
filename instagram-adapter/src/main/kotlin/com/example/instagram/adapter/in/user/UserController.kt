@@ -26,9 +26,7 @@ class UserController(
             UpdateProfileRequest(
                 request.name!!,
                 request.introduction,
-                request.link?.map {
-                    it!!.url!!
-                }?.toList()
+                request.link
             )
         )
     }

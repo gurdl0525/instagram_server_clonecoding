@@ -2,6 +2,7 @@ package com.example.instagram.domain.persistense.user
 
 import com.example.instagram.domain.persistense.user.mapper.UserMapper
 import com.example.instagram.domain.persistense.user.repository.UserRepository
+import com.example.instagram.domain.user.dto.UpdateProfileRequest
 import com.example.instagram.domain.user.model.User
 import com.example.instagram.domain.user.port.out.UserPersistencePort
 import org.springframework.stereotype.Service
@@ -24,8 +25,13 @@ class UserPersistenceAdapter(
     }
 
     @Transactional
-    override fun updateProfile(user: User) {
-        saveUser(user)
+    override fun updateProfile(user: User, request: UpdateProfileRequest) {
+        userRepository.findByAccountId(user.accountId)!!
+            .updateProfile(
+                request.introduction,
+                request.name,
+                request.link
+            )
     }
 
 

@@ -12,5 +12,5 @@ data class UpdateProfileWebRequest(
     val introduction: String?,
 
     @field:Valid
-    val link: List<AddLinkWebRequest?>?
+    val link: List<String>?
 )

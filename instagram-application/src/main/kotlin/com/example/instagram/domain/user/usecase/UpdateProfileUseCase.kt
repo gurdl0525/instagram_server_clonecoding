@@ -11,24 +11,12 @@ import com.example.instagram.global.annotation.UseCase
 class UpdateProfileUseCase(
     private val updateProfilePort: UpdateProfilePort,
     private val getCurrentUserPort: GetCurrentUserPort
-) {
+) { 
     fun execute(request: UpdateProfileRequest){
 
-        val user = getCurrentUserPort.getUserByToken()
-            ?: throw UserNotFoundException
+        val accountId = (getCurrentUserPort.getUserByToken()
+            ?: throw UserNotFoundException).accountId
 
-        updateProfilePort.updateProfile(
-            User(
-                user.id,
-                user.accountId,
-                user.password,
-                request.name,
-                request.introduction,
-                user.isDeleted,
-                user.isHided,
-                request.link
-            )
-        )
-
+        updateProfilePort.updateProfile(accountId, request)
     }
 }

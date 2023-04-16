@@ -1,7 +1,5 @@
 package com.example.instagram.global.error
 
-import org.springframework.http.HttpStatus
-
 enum class GlobalErrorCode(
     private val status: Int,
     private val code: String,

@@ -1,8 +1,8 @@
 package com.example.instagram.domain.user.port.`in`
 
-import com.example.instagram.domain.user.model.User
+import com.example.instagram.domain.user.dto.UpdateProfileRequest
 
 interface UpdateProfilePort {
 
-    fun updateProfile(user: User)
+    fun updateProfile(accountId: String, request: UpdateProfileRequest)
 }

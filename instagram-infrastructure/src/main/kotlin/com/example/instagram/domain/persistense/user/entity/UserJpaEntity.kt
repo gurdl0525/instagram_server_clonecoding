@@ -1,10 +1,10 @@
 package com.example.instagram.domain.persistense.user.entity
 
-import com.example.instagram.domain.persistense.user.converter.StringListConverter
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Where
 import java.util.*
 import javax.persistence.*
+
 
 @Entity(name = "user")
 @Where(clause = "is_deleted = false")
@@ -40,7 +40,8 @@ class UserJpaEntity(
     var introduction: String? = introduction
         protected set
 
-    @Convert(converter = StringListConverter::class)
+    @ElementCollection
+    @Column(name = "link", length = 256, nullable = true)
     var link: List<String>? = link
         protected set
 
@@ -51,4 +52,12 @@ class UserJpaEntity(
     @Column(name = "is_deleted", nullable = false)
     var isDeleted: Boolean = isDeleted
         protected set
+
+    fun updateProfile(introduction: String?, name: String, link: List<String>?) {
+        this.let {
+            it.introduction = introduction
+            it.name = name
+            it.link = link
+        }
+    }
 }
